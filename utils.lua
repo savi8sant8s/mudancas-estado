@@ -19,5 +19,6 @@ return {
     liquidImage = "assets/liquid.png",
     gasImage = "assets/gas.png",
     phisicalStates = {"Os três estados físicos básicos da", "matéria são: sólido, líquido e gasoso."},
-    tipPhisicalStates = {"Mova a imagem para", "o estado físico correto"}
+    tipPhisicalStates = {"Mova a imagem para", "o estado físico correto"},
+    atomsDescription = {"A proximidade e o grau de", "agitação das moléculas que", "compõe a matéria é o que", "definem seu estado físico."}
 }

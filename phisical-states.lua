@@ -65,56 +65,56 @@ function scene:create( event )
 		sceneGroup:insert( text )
 	end
 
-    objects.solid = display.newText( utils.solid, 0, 0, utils.font, 40 )
-    objects.solid.x = display.contentWidth * 0.7
-    objects.solid.y = display.contentHeight * 0.65
-    sceneGroup:insert( objects.solid )
-    physics.addBody(objects.solid, "static")
+  objects.solid = display.newText( utils.solid, 0, 0, utils.font, 40 )
+  objects.solid.x = display.contentWidth * 0.7
+  objects.solid.y = display.contentHeight * 0.65
+  sceneGroup:insert( objects.solid )
+  physics.addBody(objects.solid, "static")
 
-    objects.liquid = display.newText( utils.liquid, 0, 0, utils.font, 40 )
-    objects.liquid.x = display.contentWidth * 0.7
-    objects.liquid.y = display.contentHeight * 0.5
-    sceneGroup:insert( objects.liquid )
-    physics.addBody(objects.liquid, "static")
+  objects.liquid = display.newText( utils.liquid, 0, 0, utils.font, 40 )
+  objects.liquid.x = display.contentWidth * 0.7
+  objects.liquid.y = display.contentHeight * 0.5
+  sceneGroup:insert( objects.liquid )
+  physics.addBody(objects.liquid, "static")
 
-    objects.gas = display.newText( utils.gas, 0, 0, utils.font, 40 )
-    objects.gas.x = display.contentWidth * 0.7
-    objects.gas.y = display.contentHeight * 0.35
-    sceneGroup:insert( objects.gas )
-    physics.addBody(objects.gas, "static")
+  objects.gas = display.newText( utils.gas, 0, 0, utils.font, 40 )
+  objects.gas.x = display.contentWidth * 0.7
+  objects.gas.y = display.contentHeight * 0.35
+  sceneGroup:insert( objects.gas )
+  physics.addBody(objects.gas, "static")
 
-    objects.solidImage = display.newImage( utils.solidImage )
-    objects.solidImage.x = display.contentWidth * 0.3
-    objects.solidImage.y = display.contentHeight * 0.5
-    objects.solidImage:scale( 0.5, 0.5 )
-    sceneGroup:insert( objects.solidImage )
-    physics.addBody(objects.solidImage, "dynamic")
-    objects.solidImage:addEventListener( "touch", onTouch)
-    
-    objects.gasImage = display.newImage( utils.gasImage )
-    objects.gasImage.x = display.contentWidth * 0.3
-    objects.gasImage.y = display.contentHeight * 0.65
-    objects.gasImage:scale( 0.5, 0.5 )
-    sceneGroup:insert( objects.gasImage )
-    physics.addBody(objects.gasImage, "dynamic")
-    objects.gasImage:addEventListener( "touch", onTouch)
+  objects.solidImage = display.newImage( utils.solidImage )
+  objects.solidImage.x = display.contentWidth * 0.3
+  objects.solidImage.y = display.contentHeight * 0.5
+  objects.solidImage:scale( 0.5, 0.5 )
+  sceneGroup:insert( objects.solidImage )
+  physics.addBody(objects.solidImage, "dynamic")
+  objects.solidImage:addEventListener( "touch", onTouch)
+  
+  objects.gasImage = display.newImage( utils.gasImage )
+  objects.gasImage.x = display.contentWidth * 0.3
+  objects.gasImage.y = display.contentHeight * 0.65
+  objects.gasImage:scale( 0.5, 0.5 )
+  sceneGroup:insert( objects.gasImage )
+  physics.addBody(objects.gasImage, "dynamic")
+  objects.gasImage:addEventListener( "touch", onTouch)
 
-    objects.liquidImage = display.newImage( utils.liquidImage )
-    objects.liquidImage.x = display.contentWidth * 0.3
-    objects.liquidImage.y = display.contentHeight * 0.35
-    objects.liquidImage:scale( 0.5, 0.5 )
-    sceneGroup:insert( objects.liquidImage )
-    physics.addBody(objects.liquidImage, "dynamic")
-    objects.liquidImage:addEventListener( "touch", onTouch)
+  objects.liquidImage = display.newImage( utils.liquidImage )
+  objects.liquidImage.x = display.contentWidth * 0.3
+  objects.liquidImage.y = display.contentHeight * 0.35
+  objects.liquidImage:scale( 0.5, 0.5 )
+  sceneGroup:insert( objects.liquidImage )
+  physics.addBody(objects.liquidImage, "dynamic")
+  objects.liquidImage:addEventListener( "touch", onTouch)
 
-    for i = 1, #utils.tipPhisicalStates do
-        local text = display.newText(utils.tipPhisicalStates[i], 0, 0, utils.font, 40 )
-        text.x = display.contentWidth * 0.5
-        text.y = display.contentHeight * 0.75 + i * 50
-        sceneGroup:insert( text )
-    end
+  for i = 1, #utils.tipPhisicalStates do
+      local text = display.newText(utils.tipPhisicalStates[i], 0, 0, utils.font, 40 )
+      text.x = display.contentWidth * 0.5
+      text.y = display.contentHeight * 0.75 + i * 50
+      sceneGroup:insert( text )
+  end
 
-    local rectBorder = display.newRect( 0, 0, display.contentWidth * 0.6, display.contentHeight * 0.125 )
+  local rectBorder = display.newRect( 0, 0, display.contentWidth * 0.6, display.contentHeight * 0.125 )
 	rectBorder.x = display.contentWidth * 0.5
 	rectBorder.y = display.contentHeight * 0.825
 	rectBorder.strokeWidth = 4
