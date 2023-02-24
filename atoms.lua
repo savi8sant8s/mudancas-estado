@@ -114,7 +114,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "phisical-states", "fade" )
+		composer.gotoScene( "physical-states", "fade" )
 	end )
 end
 

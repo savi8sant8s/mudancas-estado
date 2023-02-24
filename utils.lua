@@ -20,5 +20,13 @@ return {
     gasImage = "assets/gas.png",
     phisicalStates = {"Os três estados físicos básicos da", "matéria são: sólido, líquido e gasoso."},
     tipPhisicalStates = {"Mova a imagem para", "o estado físico correto"},
-    atomsDescription = {"A proximidade e o grau de", "agitação das moléculas que", "compõe a matéria é o que", "definem seu estado físico."}
+    atomsDescription = {"A proximidade e o grau de", "agitação das moléculas que", "compõe a matéria é o que", "definem seu estado físico."},
+    solidification = {
+        title = "Solidificação",
+        description = {"Solidificação é a passagem do estado", "líquido para o estado sólido. Um exemplo", "é a formação de gelo: a água passa", "do estado líquido para o sólido."},
+        tip = {"Ponha a garrafa de água", "no congelador"},
+        bottle = "assets/bottle.png",
+        freezer = "assets/freezer.png"
+    },
+    
 }
