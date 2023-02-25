@@ -11,12 +11,6 @@ function scene:create( event )
 
 	local pastForce = 0
 
-	local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
-	bg.fill = utils.gradient
-	bg.anchorX = 0
-	bg.anchorY = 0
-	sceneGroup:insert( bg )
-
 	local temperature = display.newText("Temperatura: 0 ºC", 0, 0, utils.font, 40 )
 	temperature.x = display.contentWidth * 0.5
 	temperature.y = display.contentHeight * 0.75
@@ -99,22 +93,22 @@ function scene:create( event )
 
 	local next = display.newText( utils.next, 0, 0, utils.font, 40 )
 	next.x = display.contentWidth * 0.9
-	next.y = display.contentHeight * 0.95
+	next.y = display.contentHeight
 	next:setFillColor( 1, 0.84, 0 )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "", "fade" )
+		composer.gotoScene( "pages.solidification" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
 	prev.x = display.contentWidth * 0.1
-	prev.y = display.contentHeight * 0.95
+	prev.y = display.contentHeight
 	prev:setFillColor( 1, 0.84, 0 )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "physical-states", "fade" )
+		composer.gotoScene( "pages.physical-states" )
 	end )
 end
 

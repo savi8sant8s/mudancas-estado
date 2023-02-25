@@ -1,12 +1,6 @@
 return {
     title = "Mudanças de estado físico",
     font = "assets/Oswald-Medium.ttf",
-    gradient = {
-        type = "gradient",
-        color1 = { 0, 0.29, 0.68 },
-        color2 = { 0, 0.68, 0.94 },
-        direction = "right"
-    },
     logo = "assets/logo.png",
     next = "Próximo",
     prev = "Anterior",
@@ -28,5 +22,19 @@ return {
         bottle = "assets/bottle.png",
         freezer = "assets/freezer.png"
     },
-    
+    fusion = {
+        title = "Fusão",
+        description = {"Fusão é a passagem do estado sólido", "para o estado líquido. A fusão se dá", "pelo aquecimento da substância. Um", "exemplo é o gelo fora do congelador,", "quando se transforma em água."},
+        tip = {"Mova o isqueiro para", "transformar o gelo em água"},
+        ice = "assets/ice.png",
+        lighter = "assets/lighter.png"
+    },
+    boiling = {
+        title = "Ebulição",
+        description = {"Ebulição é o processo de transformação", "de uma substância do estado líquido", "para o gasoso. Um exemplo é o ato", "de ferver água."},
+        tip = {"Ligue o fogão para", "esquentar a água até ferver"},
+        stove = "assets/stove.png",
+        tap = "assets/tap.png",
+        pot = "assets/pot.png"
+    },
 }

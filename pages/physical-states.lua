@@ -52,12 +52,6 @@ Runtime:addEventListener("collision", onCollision)
 function scene:create( event )
 	local sceneGroup = self.view
 
-	local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
-	bg.fill = utils.gradient
-	bg.anchorX = 0
-	bg.anchorY = 0
-	sceneGroup:insert( bg )
-
 	for i = 1, #utils.phisicalStates do
 		local text = display.newText(utils.phisicalStates[i], 0, 0, utils.font, 40 )
 		text.x = display.contentWidth * 0.5
@@ -124,22 +118,22 @@ function scene:create( event )
 
 	local next = display.newText( utils.next, 0, 0, utils.font, 40 )
 	next.x = display.contentWidth * 0.9
-	next.y = display.contentHeight * 0.95
+	next.y = display.contentHeight
 	next:setFillColor( 1, 0.84, 0 )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "atoms", "fade" )
+		composer.gotoScene( "pages.atoms" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
 	prev.x = display.contentWidth * 0.1
-	prev.y = display.contentHeight * 0.95
+	prev.y = display.contentHeight
 	prev:setFillColor( 1, 0.84, 0 )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "contracapa", "fade" )
+		composer.gotoScene( "pages.contracapa" )
 	end )
 end
 
