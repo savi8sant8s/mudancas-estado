@@ -62,7 +62,7 @@ function scene:create( event )
 		atoms[i].y = display.contentHeight * 0.4
 		atoms[i].fill = utils.gradient
 		sceneGroup:insert( atoms[i] )
-		physics.addBody( atoms[i], "dynamic", { friction = 0.5, bounce = 1 } )
+		physics.addBody( atoms[i], "static", { friction = 0.5, bounce = 1 } )
 		atoms[i]:applyForce( 1, 1, atoms[i].x, atoms[i].y )
 	end
 

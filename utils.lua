@@ -4,6 +4,7 @@ return {
     logo = "assets/logo.png",
     next = "Próximo",
     prev = "Anterior",
+    start = "Início",
     summary = "Sumário",
     topics = {"Introdução", "Solidificação", "Fusão", "Vaporização", "Liquefação", "Sublimação"},
     solid = "Sólido",
@@ -37,4 +38,27 @@ return {
         tap = "assets/tap.png",
         pot = "assets/pot.png"
     },
+    liquefaction = {
+        title = "Liquefação",
+        description = {"Quando diminuímos a temperatura,", "o vapor de água começa a passar", "para o estado líquido. Essa mudança", "de estado é chamada de liquefação.", "Um exemplo é quando as nuvens", "condensam-se e formam a chuva."},
+        tip = {"Mova as nuvens carregadas", "para a cidade"},
+        clouds = "assets/clouds.png",
+        trees = "assets/trees.png",
+        city = "assets/city.png"
+    },
+    sublimation = {
+        title = "Sublimação",
+        description = {"Ainda existe mais uma mudança de", "estado físico chamada de sublimação.", "Ela ocorre quando se passa diretamente", "do estado sólido para o gasoso. Um", "exemplo é a naftalina e o gelo-seco."},
+        tip = {"Abra a tampa da panela", "com gelo seco"},
+        pot1 = "assets/pot-1.png",
+        pot2 = "assets/pot-2.png",
+    },
+    about = {
+        title = 'Criado por: Sávio Santos',
+        description = {'Ebook interativo requisitado na', 'disciplina de Computação Gráfica do', 'Bacharelado em Engenharia de Software,', '8º período, ministrada pelo professor', 'Ewerton Mendonça.'},
+        viewMore = 'Ver mais em:',
+        viewMoreLink = 'todamateria.com.br/mudancas-estado-fisico',
+        sourceCode = 'Código fonte:',
+        sourceCodeLink = 'github.com/savi8sant8s/mudancas-estado'
+    }
 }

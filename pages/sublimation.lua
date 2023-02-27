@@ -28,36 +28,36 @@ function scene:create( event )
     physics.start()
     physics.setGravity(0, 0 )
 
-    local title = display.newText( utils.fusion.title, 0, 0, utils.font, 60 )
+    local title = display.newText( utils.sublimation.title, 0, 0, utils.font, 60 )
 	title.x = display.contentWidth * 0.5
 	title.y = 0
 	sceneGroup:insert( title )
 
-    for i = 1, #utils.fusion.description do
-        local text = display.newText(utils.fusion.description[i], 0, 0, utils.font, 40 )
+    for i = 1, #utils.sublimation.description do
+        local text = display.newText(utils.sublimation.description[i], 0, 0, utils.font, 40 )
         text.x = display.contentWidth * 0.5
         text.y = display.contentWidth * 0.1 + i * 50
         sceneGroup:insert( text )
     end
 
-    local lighter = display.newImage( utils.fusion.lighter )
-    lighter.x = display.contentWidth * 0.7
-    lighter.y = display.contentHeight * 0.55
-    lighter:scale( 0.5, 0.5 )
-    lighter.rotation = -90
-    sceneGroup:insert( lighter )
-    lighter:addEventListener("touch", onTouch)
-    physics.addBody(lighter, "static")
+    
+    local pot1 = display.newImage( utils.sublimation.pot1 )
+    pot1.x = display.contentWidth * 0.5
+    pot1.y = display.contentHeight * 0.6
+    pot1:scale( 0.1, 0.1 )
+    sceneGroup:insert( pot1 )
+    physics.addBody(pot1, "static")
 
-    local ice = display.newImage( utils.fusion.ice )
-    ice.x = display.contentWidth * 0.3
-    ice.y = display.contentHeight * 0.55
-    ice:scale( 1, 1 )
-    sceneGroup:insert( ice )
-    physics.addBody(ice, "static")
-
-    for i = 1, #utils.fusion.tip do
-        local text = display.newText(utils.fusion.tip[i], 0, 0, utils.font, 40 )
+    local pot2 = display.newImage( utils.sublimation.pot2 )
+    pot2.x = display.contentWidth * 0.5
+    pot2.y = display.contentHeight * 0.5
+    pot2:scale( 0.1, 0.1 )
+    sceneGroup:insert( pot2 )
+    pot2:addEventListener("touch", onTouch)
+    physics.addBody(pot2, "static")
+    
+    for i = 1, #utils.sublimation.tip do
+        local text = display.newText(utils.sublimation.tip[i], 0, 0, utils.font, 40 )
         text.x = display.contentWidth * 0.5
         text.y = display.contentHeight * 0.75 + i * 50
         sceneGroup:insert( text )
@@ -78,7 +78,7 @@ function scene:create( event )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "pages.boiling" )
+		composer.gotoScene( "pages.about" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
@@ -88,7 +88,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "pages.solidification" )
+		composer.gotoScene( "pages.boiling" )
 	end )
 end
 

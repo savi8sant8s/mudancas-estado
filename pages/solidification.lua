@@ -46,7 +46,7 @@ function scene:create( event )
     bottle:scale( 0.5, 0.5 )
     sceneGroup:insert( bottle )
     bottle:addEventListener("touch", onTouch)
-    physics.addBody(bottle, "dynamic")
+    physics.addBody(bottle, "static")
 
     local freezer = display.newImage( utils.solidification.freezer )
     freezer.x = display.contentWidth * 0.7
@@ -87,7 +87,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "pages.physical-states" )
+		composer.gotoScene( "pages.atoms" )
 	end )
 end
 

@@ -3,4 +3,4 @@ display.setDefault("background", 0, 0.29, 0.68)
 
 local composer = require "composer"
 
-composer.gotoScene( "pages.boiling" )
+composer.gotoScene( "pages.capa" )

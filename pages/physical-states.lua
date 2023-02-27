@@ -82,7 +82,7 @@ function scene:create( event )
   objects.solidImage.y = display.contentHeight * 0.5
   objects.solidImage:scale( 0.5, 0.5 )
   sceneGroup:insert( objects.solidImage )
-  physics.addBody(objects.solidImage, "dynamic")
+  physics.addBody(objects.solidImage, "static")
   objects.solidImage:addEventListener( "touch", onTouch)
   
   objects.gasImage = display.newImage( utils.gasImage )
@@ -90,7 +90,7 @@ function scene:create( event )
   objects.gasImage.y = display.contentHeight * 0.65
   objects.gasImage:scale( 0.5, 0.5 )
   sceneGroup:insert( objects.gasImage )
-  physics.addBody(objects.gasImage, "dynamic")
+  physics.addBody(objects.gasImage, "static")
   objects.gasImage:addEventListener( "touch", onTouch)
 
   objects.liquidImage = display.newImage( utils.liquidImage )
@@ -98,7 +98,7 @@ function scene:create( event )
   objects.liquidImage.y = display.contentHeight * 0.35
   objects.liquidImage:scale( 0.5, 0.5 )
   sceneGroup:insert( objects.liquidImage )
-  physics.addBody(objects.liquidImage, "dynamic")
+  physics.addBody(objects.liquidImage, "static")
   objects.liquidImage:addEventListener( "touch", onTouch)
 
   for i = 1, #utils.tipPhisicalStates do
