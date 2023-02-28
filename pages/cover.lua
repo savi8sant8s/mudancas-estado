@@ -23,7 +23,7 @@ function scene:create( event )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "pages.contracapa" )
+		composer.gotoScene( "pages.back-cover" )
 	end )
 end
 

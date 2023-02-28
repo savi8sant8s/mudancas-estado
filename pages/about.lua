@@ -51,7 +51,7 @@ function scene:create( event )
 	sceneGroup:insert( start )
 
 	start:addEventListener( "tap", function()
-		composer.gotoScene( "pages.capa" )
+		composer.gotoScene( "pages.cover" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )

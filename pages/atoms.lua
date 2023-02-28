@@ -60,9 +60,9 @@ function scene:create( event )
 		atoms[i] = display.newCircle( 0, 0, 25 )
 		atoms[i].x = display.contentWidth * 0.3
 		atoms[i].y = display.contentHeight * 0.4
-		atoms[i].fill = utils.gradient
+		atoms[i].fill = {1, 1, 1}
 		sceneGroup:insert( atoms[i] )
-		physics.addBody( atoms[i], "static", { friction = 0.5, bounce = 1 } )
+		physics.addBody( atoms[i], "dynamic", { friction = 0, bounce = 1 } )
 		atoms[i]:applyForce( 1, 1, atoms[i].x, atoms[i].y )
 	end
 
@@ -78,14 +78,6 @@ function scene:create( event )
 				local value = event.value
 				local temp = math.floor( value  )
 				temperature.text = "Temperatura: " .. temp .. " ºC"
-				for i = 1, #atoms do
-					if pastForce > temp then
-						atoms[i]:setLinearVelocity( 0, 0 )
-					else
-						atoms[i]:applyForce( 50, 50, atoms[i].x, atoms[i].y )
-					end
-					pastForce = temp
-				end
 			end
 		end
 	}

@@ -54,7 +54,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "pages.capa" )
+		composer.gotoScene( "pages.cover" )
 	end )
 end
 
