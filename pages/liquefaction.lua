@@ -84,7 +84,7 @@ function scene:create( event )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "pages.sublimation" )
+		composer.gotoScene( "pages.sublimation", "fade" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
@@ -94,7 +94,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "pages.boiling" )
+		composer.gotoScene( "pages.boiling", "fade" )
 	end )
 end
 

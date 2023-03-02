@@ -7,7 +7,6 @@ function scene:create( event )
 
 	local title = display.newText( utils.title, 0, 0, utils.font, 60 )
 	title.x = display.contentWidth * 0.5
-	title.y = display.contentHeight * 0.1	
 	sceneGroup:insert( title )
 
 	local summary = display.newText( utils.summary, 0, 0, utils.font, 50 )
@@ -44,7 +43,7 @@ function scene:create( event )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "pages.physical-states" )
+		composer.gotoScene( "pages.physical-states", "fade" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
@@ -54,7 +53,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "pages.cover" )
+		composer.gotoScene( "pages.cover", "fade" )
 	end )
 end
 

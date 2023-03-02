@@ -2,11 +2,28 @@ local utils = require("utils")
 local composer = require( "composer" )
 local scene = composer.newScene()
 local physics = require("physics")
+local timer = require("timer")
 
-local objects = {}
+local images = {}
+local texts = {}
+local countHidedImages = 0
 
-physics.start()
-physics.setGravity(0, 0)
+local function puzzleResolved()
+    countHidedImages = countHidedImages + 1
+    if countHidedImages == 3 then
+      timer.performWithDelay( 1000, function()
+        transition.to(texts.solid, {time = 2000, x = display.contentWidth * 0.5, y = display.contentHeight * 0.2})
+        transition.to(images.solid, {time = 2000, x = display.contentWidth * 0.5, y = display.contentHeight * 0.3})
+        transition.to(images.solid, {time = 2000, alpha = 1})
+        transition.to(texts.gas, {time = 2000, x = display.contentWidth * 0.5, y = display.contentHeight * 0.6})
+        transition.to(images.gas, {time = 2000, x = display.contentWidth * 0.5, y = display.contentHeight * 0.7})
+        transition.to(images.gas, {time = 2000, alpha = 1})
+        transition.to(texts.liquid, {time = 2000, x = display.contentWidth * 0.5, y = display.contentHeight * 0.4})
+        transition.to(images.liquid, {time = 2000, x = display.contentWidth * 0.5, y = display.contentHeight * 0.5})
+        transition.to(images.liquid, {time = 2000, alpha = 1})
+      end)
+    end
+end
 
 local function onTouch(event)
   local target = event.target
@@ -29,20 +46,23 @@ end
 
 local function onCollision(event)
   if event.phase == "began" then
-      if (event.object1 == objects.solidImage and event.object2 == objects.solid) or
-          (event.object1 == objects.solid and event.object2 == objects.solidImage) then
-          objects.solid.fill = {1, 0.84, 0}
-          transition.to(objects.solidImage, {time = 1000, alpha = 0})
+      if (event.object1 == images.solid and event.object2 == texts.solid) or
+          (event.object1 == texts.solid and event.object2 == images.solid) then
+          texts.solid.fill = {1, 0.84, 0}
+          transition.to(images.solid, {time = 1000, alpha = 0})
+          puzzleResolved()
       end
-      if (event.object1 == objects.gasImage and event.object2 == objects.gas) or
-          (event.object1 == objects.gas and event.object2 == objects.gasImage) then
-          objects.gas.fill = {1, 0.84, 0}
-          transition.to(objects.gasImage, {time = 1000, alpha = 0})
+      if (event.object1 == images.gas and event.object2 == texts.gas) or
+          (event.object1 == texts.gas and event.object2 == images.gas) then
+          texts.gas.fill = {1, 0.84, 0}
+          transition.to(images.gas, {time = 1000, alpha = 0})
+          puzzleResolved()
       end
-      if (event.object1 == objects.liquidImage and event.object2 == objects.liquid) or
-          (event.object1 == objects.liquid and event.object2 == objects.liquidImage) then
-          objects.liquid.fill = {1, 0.84, 0}
-          transition.to(objects.liquidImage, {time = 1000, alpha = 0})
+      if (event.object1 == images.liquid and event.object2 == texts.liquid) or
+          (event.object1 == texts.liquid and event.object2 == images.liquid) then
+          texts.liquid.fill = {1, 0.84, 0}
+          transition.to(images.liquid, {time = 1000, alpha = 0})
+          puzzleResolved()
       end
   end
 end
@@ -52,54 +72,57 @@ Runtime:addEventListener("collision", onCollision)
 function scene:create( event )
 	local sceneGroup = self.view
 
+  physics.start()
+  physics.setGravity(0, 0)
+
 	for i = 1, #utils.phisicalStates do
-		local text = display.newText(utils.phisicalStates[i], 0, 0, utils.font, 40 )
+		local text = display.newText(utils.phisicalStates[i], 0, 0, utils.font, 50 )
 		text.x = display.contentWidth * 0.5
-		text.y = display.contentHeight * 0.1 + i * 50
+		text.y = i * 50
 		sceneGroup:insert( text )
 	end
 
-  objects.solid = display.newText( utils.solid, 0, 0, utils.font, 40 )
-  objects.solid.x = display.contentWidth * 0.7
-  objects.solid.y = display.contentHeight * 0.65
-  sceneGroup:insert( objects.solid )
-  physics.addBody(objects.solid, "static")
+  texts.solid = display.newText( utils.solid, 0, 0, utils.font, 40 )
+  texts.solid.x = display.contentWidth * 0.7
+  texts.solid.y = display.contentHeight * 0.65
+  sceneGroup:insert( texts.solid )
+  physics.addBody(texts.solid, "static", {bounce = 0.5})
 
-  objects.liquid = display.newText( utils.liquid, 0, 0, utils.font, 40 )
-  objects.liquid.x = display.contentWidth * 0.7
-  objects.liquid.y = display.contentHeight * 0.5
-  sceneGroup:insert( objects.liquid )
-  physics.addBody(objects.liquid, "static")
+  texts.liquid = display.newText( utils.liquid, 0, 0, utils.font, 40 )
+  texts.liquid.x = display.contentWidth * 0.7
+  texts.liquid.y = display.contentHeight * 0.5
+  sceneGroup:insert( texts.liquid )
+  physics.addBody(texts.liquid, "static")
 
-  objects.gas = display.newText( utils.gas, 0, 0, utils.font, 40 )
-  objects.gas.x = display.contentWidth * 0.7
-  objects.gas.y = display.contentHeight * 0.35
-  sceneGroup:insert( objects.gas )
-  physics.addBody(objects.gas, "static")
+  texts.gas = display.newText( utils.gas, 0, 0, utils.font, 40 )
+  texts.gas.x = display.contentWidth * 0.7
+  texts.gas.y = display.contentHeight * 0.35
+  sceneGroup:insert( texts.gas )
+  physics.addBody(texts.gas, "static")
 
-  objects.solidImage = display.newImage( utils.solidImage )
-  objects.solidImage.x = display.contentWidth * 0.3
-  objects.solidImage.y = display.contentHeight * 0.5
-  objects.solidImage:scale( 0.5, 0.5 )
-  sceneGroup:insert( objects.solidImage )
-  physics.addBody(objects.solidImage, "static")
-  objects.solidImage:addEventListener( "touch", onTouch)
+  images.solid = display.newImage( utils.solidImage )
+  images.solid.x = display.contentWidth * 0.3
+  images.solid.y = display.contentHeight * 0.5
+  images.solid:scale( 0.5, 0.5 )
+  sceneGroup:insert( images.solid )
+  physics.addBody(images.solid, "dynamic", {isSensor = true})
+  images.solid:addEventListener( "touch", onTouch)
   
-  objects.gasImage = display.newImage( utils.gasImage )
-  objects.gasImage.x = display.contentWidth * 0.3
-  objects.gasImage.y = display.contentHeight * 0.65
-  objects.gasImage:scale( 0.5, 0.5 )
-  sceneGroup:insert( objects.gasImage )
-  physics.addBody(objects.gasImage, "static")
-  objects.gasImage:addEventListener( "touch", onTouch)
+  images.gas = display.newImage( utils.gasImage )
+  images.gas.x = display.contentWidth * 0.3
+  images.gas.y = display.contentHeight * 0.65
+  images.gas:scale( 0.5, 0.5 )
+  sceneGroup:insert( images.gas )
+  physics.addBody(images.gas, "dynamic", {isSensor = true})
+  images.gas:addEventListener( "touch", onTouch)
 
-  objects.liquidImage = display.newImage( utils.liquidImage )
-  objects.liquidImage.x = display.contentWidth * 0.3
-  objects.liquidImage.y = display.contentHeight * 0.35
-  objects.liquidImage:scale( 0.5, 0.5 )
-  sceneGroup:insert( objects.liquidImage )
-  physics.addBody(objects.liquidImage, "static")
-  objects.liquidImage:addEventListener( "touch", onTouch)
+  images.liquid = display.newImage( utils.liquidImage )
+  images.liquid.x = display.contentWidth * 0.3
+  images.liquid.y = display.contentHeight * 0.35
+  images.liquid:scale( 0.5, 0.5 )
+  sceneGroup:insert( images.liquid )
+  physics.addBody(images.liquid, "dynamic", {isSensor = true})
+  images.liquid:addEventListener( "touch", onTouch)
 
   for i = 1, #utils.tipPhisicalStates do
       local text = display.newText(utils.tipPhisicalStates[i], 0, 0, utils.font, 40 )
@@ -123,7 +146,7 @@ function scene:create( event )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "pages.atoms" )
+		composer.gotoScene( "pages.atoms", "fade" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
@@ -133,7 +156,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "pages.back-cover" )
+		composer.gotoScene( "pages.back-cover", "fade" )
 	end )
 end
 

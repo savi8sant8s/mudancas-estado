@@ -77,7 +77,7 @@ function scene:create( event )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "pages.fusion" )
+		composer.gotoScene( "pages.fusion", "fade" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
@@ -87,7 +87,7 @@ function scene:create( event )
 	sceneGroup:insert( prev )
 
 	prev:addEventListener( "tap", function()
-		composer.gotoScene( "pages.atoms" )
+		composer.gotoScene( "pages.atoms", "fade" )
 	end )
 end
 
