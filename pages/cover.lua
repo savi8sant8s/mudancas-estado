@@ -5,6 +5,17 @@ local scene = composer.newScene()
 function scene:create( event )
 	local sceneGroup = self.view
 
+	local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight * 2 )
+	bg.fill = {
+        type = "gradient",
+        color1 = { 0, 0.29, 0.68 },
+        color2 = { 0, 0.68, 0.94 },
+        direction = "right"
+    }
+	bg.x = display.contentWidth * 0.5
+	bg.y = display.contentHeight * 0.5
+	sceneGroup:insert( bg )
+
 	local title = display.newText( utils.title, 0, 0, utils.font, 60 )
 	title.x = display.contentWidth * 0.5
 	sceneGroup:insert( title )

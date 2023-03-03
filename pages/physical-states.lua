@@ -75,6 +75,17 @@ function scene:create( event )
   physics.start()
   physics.setGravity(0, 0)
 
+  local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight * 2 )
+	bg.fill = {
+        type = "gradient",
+        color1 = { 0, 0.29, 0.68 },
+        color2 = { 0, 0.68, 0.94 },
+        direction = "right"
+    }
+	bg.x = display.contentWidth * 0.5
+	bg.y = display.contentHeight * 0.5
+	sceneGroup:insert( bg )
+  
 	for i = 1, #utils.physicalStates.description do
 		local text = display.newText(utils.physicalStates.description[i], 0, 0, utils.font, 50 )
 		text.x = display.contentWidth * 0.5
