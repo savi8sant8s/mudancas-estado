@@ -75,32 +75,32 @@ function scene:create( event )
   physics.start()
   physics.setGravity(0, 0)
 
-	for i = 1, #utils.phisicalStates do
-		local text = display.newText(utils.phisicalStates[i], 0, 0, utils.font, 50 )
+	for i = 1, #utils.physicalStates.description do
+		local text = display.newText(utils.physicalStates.description[i], 0, 0, utils.font, 50 )
 		text.x = display.contentWidth * 0.5
 		text.y = i * 50
 		sceneGroup:insert( text )
 	end
 
-  texts.solid = display.newText( utils.solid, 0, 0, utils.font, 40 )
+  texts.solid = display.newText( utils.physicalStates.solid, 0, 0, utils.font, 40 )
   texts.solid.x = display.contentWidth * 0.7
   texts.solid.y = display.contentHeight * 0.65
   sceneGroup:insert( texts.solid )
   physics.addBody(texts.solid, "static", {bounce = 0.5})
 
-  texts.liquid = display.newText( utils.liquid, 0, 0, utils.font, 40 )
+  texts.liquid = display.newText( utils.physicalStates.liquid, 0, 0, utils.font, 40 )
   texts.liquid.x = display.contentWidth * 0.7
   texts.liquid.y = display.contentHeight * 0.5
   sceneGroup:insert( texts.liquid )
   physics.addBody(texts.liquid, "static")
 
-  texts.gas = display.newText( utils.gas, 0, 0, utils.font, 40 )
+  texts.gas = display.newText( utils.physicalStates.gas, 0, 0, utils.font, 40 )
   texts.gas.x = display.contentWidth * 0.7
   texts.gas.y = display.contentHeight * 0.35
   sceneGroup:insert( texts.gas )
   physics.addBody(texts.gas, "static")
 
-  images.solid = display.newImage( utils.solidImage )
+  images.solid = display.newImage( utils.physicalStates.solidImage )
   images.solid.x = display.contentWidth * 0.3
   images.solid.y = display.contentHeight * 0.5
   images.solid:scale( 0.5, 0.5 )
@@ -108,7 +108,7 @@ function scene:create( event )
   physics.addBody(images.solid, "dynamic", {isSensor = true})
   images.solid:addEventListener( "touch", onTouch)
   
-  images.gas = display.newImage( utils.gasImage )
+  images.gas = display.newImage( utils.physicalStates.gasImage )
   images.gas.x = display.contentWidth * 0.3
   images.gas.y = display.contentHeight * 0.65
   images.gas:scale( 0.5, 0.5 )
@@ -116,7 +116,7 @@ function scene:create( event )
   physics.addBody(images.gas, "dynamic", {isSensor = true})
   images.gas:addEventListener( "touch", onTouch)
 
-  images.liquid = display.newImage( utils.liquidImage )
+  images.liquid = display.newImage( utils.physicalStates.liquidImage )
   images.liquid.x = display.contentWidth * 0.3
   images.liquid.y = display.contentHeight * 0.35
   images.liquid:scale( 0.5, 0.5 )
@@ -124,8 +124,8 @@ function scene:create( event )
   physics.addBody(images.liquid, "dynamic", {isSensor = true})
   images.liquid:addEventListener( "touch", onTouch)
 
-  for i = 1, #utils.tipPhisicalStates do
-      local text = display.newText(utils.tipPhisicalStates[i], 0, 0, utils.font, 40 )
+  for i = 1, #utils.physicalStates.tip do
+      local text = display.newText(utils.physicalStates.tip[i], 0, 0, utils.font, 40 )
       text.x = display.contentWidth * 0.5
       text.y = display.contentHeight * 0.75 + i * 50
       sceneGroup:insert( text )
@@ -146,7 +146,7 @@ function scene:create( event )
 	sceneGroup:insert( next )
 
 	next:addEventListener( "tap", function()
-		composer.gotoScene( "pages.atoms", "fade" )
+		composer.gotoScene( "pages.molecules", "fade" )
 	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )

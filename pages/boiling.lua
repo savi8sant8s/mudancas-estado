@@ -42,7 +42,7 @@ function scene:create( event )
     sceneGroup:insert( tap )
     tap:addEventListener( "tap", onClickGas )
 
-    gas = display.newImage( utils.gasImage )
+    gas = display.newImage( utils.physicalStates.gasImage )
     gas.x = display.contentWidth * 0.4
     gas.y = display.contentHeight * 0.4
     sceneGroup:insert( gas )

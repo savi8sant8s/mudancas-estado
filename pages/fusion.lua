@@ -3,6 +3,9 @@ local composer = require( "composer" )
 local physics = require("physics")
 local scene = composer.newScene()
 
+local lighter
+local ice
+
 local function onTouch(event)
     local target = event.target
     if event.phase == "began" then
@@ -12,6 +15,7 @@ local function onTouch(event)
       target.markY = target.y
     elseif event.phase == "moved" then
       if target.isFocus then
+        transition.to(lighter, {time = 100, rotation = -75})
         local x = (event.x - event.xStart) + target.markX
         local y = (event.y - event.yStart) + target.markY
         target.x, target.y = x, y
@@ -22,56 +26,87 @@ local function onTouch(event)
     end
 end
 
+local function onCollision(event)
+  if event.phase == "began" then
+      if (event.object1 == lighter and event.object2 == ice) or
+          (event.object1 == ice and event.object2 == lighter) then
+          ice:play()
+      end
+  end
+end
+
+Runtime:addEventListener("collision", onCollision)
+
 function scene:create( event )
 	local sceneGroup = self.view
 
-    physics.start()
-    physics.setGravity(0, 0 )
+  physics.start()
+  physics.setGravity(0, 0 )
 
-    local title = display.newText( utils.fusion.title, 0, 0, utils.font, 60 )
-	title.x = display.contentWidth * 0.5
-	title.y = 0
-	sceneGroup:insert( title )
+  local title = display.newText( utils.fusion.title, 0, 0, utils.font, 60 )
+  title.x = display.contentWidth * 0.5
+  title.y = 0
+  sceneGroup:insert( title )
 
-    for i = 1, #utils.fusion.description do
-        local text = display.newText(utils.fusion.description[i], 0, 0, utils.font, 40 )
-        text.x = display.contentWidth * 0.5
-        text.y = display.contentWidth * 0.1 + i * 50
-        sceneGroup:insert( text )
-    end
+  for i = 1, #utils.fusion.description do
+      local text = display.newText(utils.fusion.description[i], 0, 0, utils.font, 40 )
+      text.x = display.contentWidth * 0.5
+      text.y = display.contentWidth * 0.1 + i * 50
+      sceneGroup:insert( text )
+  end
 
-    local lighter = display.newImage( utils.fusion.lighter )
-    lighter.x = display.contentWidth * 0.7
-    lighter.y = display.contentHeight * 0.55
-    lighter:scale( 0.5, 0.5 )
-    lighter.rotation = -90
-    sceneGroup:insert( lighter )
-    lighter:addEventListener("touch", onTouch)
-    physics.addBody(lighter, "static")
+  local iceSheetOptions = {
+    width = 300,
+    height = 300,
+    numFrames = 10
+  }
+  ice = graphics.newImageSheet( utils.fusion.ice, iceSheetOptions )
+  local sequenceData = {
+    { name = "normal", start = 1, count = 10, time = 1500, loopCount = 1 }
+  }
+  ice = display.newSprite( ice, sequenceData )
+  ice.x = display.contentWidth * 0.3
+  ice.y = display.contentHeight * 0.55
+  ice:scale( 1.5, 1.5 )
+  sceneGroup:insert( ice )
+  physics.addBody( ice, "static" )
 
-    local ice = display.newImage( utils.fusion.ice )
-    ice.x = display.contentWidth * 0.3
-    ice.y = display.contentHeight * 0.55
-    ice:scale( 1, 1 )
-    sceneGroup:insert( ice )
-    physics.addBody(ice, "static")
+  local lighterSheetOptions = {
+    width = 100,
+    height = 330,
+    numFrames = 3
+  }
+  lighter = graphics.newImageSheet( utils.fusion.lighter, lighterSheetOptions )
+  local sequenceData = {
+    { name = "normal", start = 1, count = 10, time = 75, loopCount = 0 }
+  }
+  lighter = display.newSprite( lighter, sequenceData )
+  lighter.x = display.contentWidth * 0.8
+  lighter.y = display.contentHeight * 0.55
+  lighter.width = 75
+  lighter.height = 150
+  lighter:scale( 0.5, 0.5 )
+  sceneGroup:insert( lighter )
+  lighter:addEventListener("touch", onTouch)
+  physics.addBody(lighter, "dynamic", {isSensor = true })
+  lighter:play()
 
-    for i = 1, #utils.fusion.tip do
-        local text = display.newText(utils.fusion.tip[i], 0, 0, utils.font, 40 )
-        text.x = display.contentWidth * 0.5
-        text.y = display.contentHeight * 0.75 + i * 50
-        sceneGroup:insert( text )
-    end
-  
-    local rectBorder = display.newRect( 0, 0, display.contentWidth * 0.6, display.contentHeight * 0.125 )
-    rectBorder.x = display.contentWidth * 0.5
-    rectBorder.y = display.contentHeight * 0.825
-    rectBorder.strokeWidth = 4
-    rectBorder:setFillColor( 0, 0, 0, 0 )
-    rectBorder:setStrokeColor( 1, 1, 1 )
-    sceneGroup:insert( rectBorder )
+  for i = 1, #utils.fusion.tip do
+      local text = display.newText(utils.fusion.tip[i], 0, 0, utils.font, 40 )
+      text.x = display.contentWidth * 0.5
+      text.y = display.contentHeight * 0.75 + i * 50
+      sceneGroup:insert( text )
+  end
 
-    local next = display.newText( utils.next, 0, 0, utils.font, 40 )
+  local rectBorder = display.newRect( 0, 0, display.contentWidth * 0.6, display.contentHeight * 0.125 )
+  rectBorder.x = display.contentWidth * 0.5
+  rectBorder.y = display.contentHeight * 0.825
+  rectBorder.strokeWidth = 4
+  rectBorder:setFillColor( 0, 0, 0, 0 )
+  rectBorder:setStrokeColor( 1, 1, 1 )
+  sceneGroup:insert( rectBorder )
+
+  local next = display.newText( utils.next, 0, 0, utils.font, 40 )
 	next.x = display.contentWidth * 0.9
 	next.y = display.contentHeight 
 	next:setFillColor( 1, 0.84, 0 )
