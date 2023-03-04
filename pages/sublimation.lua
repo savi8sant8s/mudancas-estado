@@ -55,11 +55,11 @@ function scene:create( event )
   local sublimationSheetOptions = {
     width = 334,
     height = 171,
-    numFrames = 46
+    numFrames = 23
   }
   sublimation = graphics.newImageSheet( utils.sublimation.sublimation, sublimationSheetOptions )
   local sequenceData = {
-  { name = "normal", start = 1, count = 46, time = 5000, loopCount = 0 }
+  { name = "normal", start = 1, count = 23, time = 3000, loopCount = 0 }
   }
   sublimation = display.newSprite( sublimation, sequenceData )
   sublimation.x = display.contentWidth * 0.5
