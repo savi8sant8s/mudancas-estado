@@ -2,18 +2,55 @@ local utils = require("utils")
 local composer = require( "composer" )
 local scene = composer.newScene()
 
-local gas 
+local turnOn = false
+local turnOn2 = false
+local button
+local button2
+local kettle
+local kettle2
 
-local function onClickGas(event)
-    gas.isVisible = true
+function onTurnOn()
+    turnOn = not turnOn
+    if turnOn then
+        transition.to(button, {time = 100, rotation = -15})
+        kettle:setSequence( "normal" )
+        kettle:play()
+    else
+        transition.to(button, {time = 100, rotation = 90})
+        kettle:setFrame( 1 )
+        kettle:pause()
+    end
+end
+
+function onTurnOn2()
+    turnOn2 = not turnOn2
+    if turnOn2 then
+        transition.to(button2, {time = 100, rotation = -15})
+        kettle2:setSequence( "normal" )
+        kettle2:play()
+    else
+        transition.to(button2, {time = 100, rotation = 90})
+        kettle2:setFrame( 1 )
+        kettle2:pause()
+    end
 end
 
 function scene:create( event )
 	local sceneGroup = self.view
 
+    local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight * 2 )
+	bg.fill = {
+        type = "gradient",
+        color1 = { 0, 0.29, 0.68 },
+        color2 = { 0, 0.68, 0.94 },
+        direction = "right"
+    }
+	bg.x = display.contentWidth * 0.5
+	bg.y = display.contentHeight * 0.5
+	sceneGroup:insert( bg )
+    
     local title = display.newText( utils.boiling.title, 0, 0, utils.font, 60 )
 	title.x = display.contentWidth * 0.5
-	title.y = 0
 	sceneGroup:insert( title )
 
     for i = 1, #utils.boiling.description do
@@ -25,28 +62,58 @@ function scene:create( event )
 
     local stove = display.newImage( utils.boiling.stove )
     stove.x = display.contentWidth * 0.5
-    stove.y = display.contentHeight * 0.55
+    stove.y = display.contentHeight * 0.6
     stove:scale( 2, 2 )
     sceneGroup:insert( stove )
 
-    local pot = display.newImage( utils.boiling.pot )
-    pot.x = display.contentWidth * 0.375
-    pot.y = display.contentHeight * 0.475
-    pot:scale( 0.075, 0.075 )
-    sceneGroup:insert( pot )
+    local kettleSheetOptions = {
+        width = 330,
+        height = 320,
+        numFrames = 5
+    }
+    kettle = graphics.newImageSheet( utils.boiling.kettle, kettleSheetOptions )
+    local sequenceData = {
+    { name = "normal", start = 1, count = 5, time = 500, loopCount = 0 }
+    }
+    kettle = display.newSprite( kettle, sequenceData )
+    kettle.x = display.contentWidth * 0.3
+    kettle.y = display.contentHeight * 0.45
+    kettle:scale( 1, 1 )
+    sceneGroup:insert( kettle )
 
-    local tap = display.newImage( utils.boiling.tap )
-    tap.x = display.contentWidth * 0.4
-    tap.y = display.contentHeight * 0.675
-    tap:scale( 0.05, 0.05 )
-    sceneGroup:insert( tap )
-    tap:addEventListener( "tap", onClickGas )
+    local kettle2SheetOptions = {
+        width = 330,
+        height = 320,
+        numFrames = 5
+    }
+    kettle2 = graphics.newImageSheet( utils.boiling.kettle, kettle2SheetOptions )
+    local sequenceData = {
+    { name = "normal", start = 1, count = 5, time = 500, loopCount = 0 }
+    }
+    kettle2 = display.newSprite( kettle2, sequenceData )
+    kettle2.x = display.contentWidth * 0.7
+    kettle2.y = display.contentHeight * 0.45
+    kettle2:scale( 1, 1 )
+    kettle2.xScale = -kettle2.xScale
+    sceneGroup:insert( kettle2 )
 
-    gas = display.newImage( utils.physicalStates.gasImage )
-    gas.x = display.contentWidth * 0.4
-    gas.y = display.contentHeight * 0.4
-    sceneGroup:insert( gas )
-    gas.isVisible = false
+    button = display.newRect( 0, 0, 30, 0 )
+    button.x = display.contentWidth * 0.365
+    button.y = display.contentHeight * 0.68
+    button.strokeWidth = 10
+    button.rotation = 90
+    button:setStrokeColor( 1, 0.84, 0.1 )
+    sceneGroup:insert( button )
+    button:addEventListener( "tap", onTurnOn )
+    
+    button2 = display.newRect( 0, 0, 30, 0 )
+    button2.x = display.contentWidth * 0.64
+    button2.y = display.contentHeight * 0.68
+    button2.strokeWidth = 10
+    button2.rotation = 90
+    button2:setStrokeColor( 1, 0.84, 0.1 )
+    sceneGroup:insert( button2 )
+    button2:addEventListener( "tap", onTurnOn2 )
 
     for i = 1, #utils.boiling.tip do
         local text = display.newText(utils.boiling.tip[i], 0, 0, utils.font, 40 )

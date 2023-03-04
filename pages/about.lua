@@ -9,6 +9,17 @@ function scene:create( event )
     physics.start()
     physics.setGravity(0, 0 )
 
+    local bg = display.newRect( 0, 0, display.contentWidth, display.contentHeight * 2 )
+	bg.fill = {
+        type = "gradient",
+        color1 = { 0, 0.29, 0.68 },
+        color2 = { 0, 0.68, 0.94 },
+        direction = "right"
+    }
+	bg.x = display.contentWidth * 0.5
+	bg.y = display.contentHeight * 0.5
+	sceneGroup:insert( bg )
+
     local title = display.newText( utils.about.title, 0, 0, utils.font, 60 )
     title:setFillColor( 1, 0.84, 0 )
 	title.x = display.contentWidth * 0.5
@@ -43,16 +54,6 @@ function scene:create( event )
     sourceCodeLink.x = display.contentWidth * 0.5
     sourceCodeLink.y = display.contentHeight * 0.7 + 150
     sceneGroup:insert( sourceCodeLink )
-
-    local start = display.newText( utils.start, 0, 0, utils.font, 40 )
-	start.x = display.contentWidth * 0.9
-	start.y = display.contentHeight 
-	start:setFillColor( 1, 0.84, 0 )
-	sceneGroup:insert( start )
-
-	start:addEventListener( "tap", function()
-		composer.gotoScene( "pages.cover", "fade" )
-	end )
 
 	local prev = display.newText( utils.prev, 0, 0, utils.font, 40 )
 	prev.x = display.contentWidth * 0.1

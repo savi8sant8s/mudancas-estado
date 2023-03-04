@@ -39,25 +39,24 @@ return {
     boiling = {
         title = "Ebulição",
         description = {"Ebulição é o processo de transformação", "de uma substância do estado líquido", "para o gasoso. Um exemplo é o ato", "de ferver água."},
-        tip = {"Ligue o fogão para", "esquentar a água até ferver"},
+        tip = {"Ligue as bocas do fogão", "para ferver a água"},
         stove = "assets/stove.png",
         tap = "assets/tap.png",
-        pot = "assets/pot.png"
+        kettle = "assets/kettle.png",
+        fire = "assets/fire.png",
     },
     liquefaction = {
         title = "Liquefação",
         description = {"Quando diminuímos a temperatura,", "o vapor de água começa a passar", "para o estado líquido. Essa mudança", "de estado é chamada de liquefação.", "Um exemplo é quando as nuvens", "condensam-se e formam a chuva."},
         tip = {"Mova as nuvens carregadas", "para a cidade"},
-        clouds = "assets/clouds.png",
+        cloud = "assets/cloud.png",
         trees = "assets/trees.png",
         city = "assets/city.png"
     },
     sublimation = {
         title = "Sublimação",
         description = {"Ainda existe mais uma mudança de", "estado físico chamada de sublimação.", "Ela ocorre quando se passa diretamente", "do estado sólido para o gasoso. Um", "exemplo é a naftalina e o gelo-seco."},
-        tip = {"Abra a tampa da panela", "com gelo seco"},
-        pot1 = "assets/pot-1.png",
-        pot2 = "assets/pot-2.png",
+        sublimation = "assets/sublimation.png"
     },
     about = {
         title = 'Criado por: Sávio Santos',

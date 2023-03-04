@@ -96,7 +96,7 @@ function scene:create( event )
   lighter.y = display.contentHeight * 0.55
   lighter.width = 75
   lighter.height = 150
-  lighter:scale( 0.5, 0.5 )
+  lighter:scale( 0.75, 0.75 )
   sceneGroup:insert( lighter )
   lighter:addEventListener("touch", onTouch)
   physics.addBody(lighter, "dynamic", {isSensor = true })
