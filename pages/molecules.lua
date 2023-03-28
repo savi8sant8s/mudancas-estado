@@ -121,6 +121,7 @@ function scene:create( event )
 		x = display.contentWidth * 0.5,
 		y = display.contentHeight * 0.7,
 		width = display.contentWidth * 0.7,
+		height = display.contentHeight * 0.125,
 		value = 0.5,
 		listener = function( event )
 			local phase = event.phase

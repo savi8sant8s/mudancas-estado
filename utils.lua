@@ -9,7 +9,7 @@ return {
     topics = {"Introdução", "Solidificação", "Fusão", "Vaporização", "Liquefação", "Sublimação"},
     physicalStates = {
         description = {"Os três estados físicos básicos da", "matéria são: sólido, líquido e gasoso."},
-        tip = {"Mova a imagem para", "o estado físico correto"},
+        tip = {"Arraste as imagens para", "o estado físico correto"},
         solid = "Sólido",
         liquid = "Líquido",
         gas = "Gasoso",

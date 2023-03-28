@@ -48,18 +48,21 @@ local function onCollision(event)
   if event.phase == "began" then
       if (event.object1 == images.solid and event.object2 == texts.solid) or
           (event.object1 == texts.solid and event.object2 == images.solid) then
+          system.vibrate()
           texts.solid.fill = {1, 0.84, 0}
           transition.to(images.solid, {time = 1000, alpha = 0})
           puzzleResolved()
       end
       if (event.object1 == images.gas and event.object2 == texts.gas) or
           (event.object1 == texts.gas and event.object2 == images.gas) then
+          system.vibrate()
           texts.gas.fill = {1, 0.84, 0}
           transition.to(images.gas, {time = 1000, alpha = 0})
           puzzleResolved()
       end
       if (event.object1 == images.liquid and event.object2 == texts.liquid) or
           (event.object1 == texts.liquid and event.object2 == images.liquid) then
+          system.vibrate()
           texts.liquid.fill = {1, 0.84, 0}
           transition.to(images.liquid, {time = 1000, alpha = 0})
           puzzleResolved()

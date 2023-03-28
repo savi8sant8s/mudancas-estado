@@ -100,7 +100,7 @@ function scene:create( event )
     button = display.newRect( 0, 0, 30, 0 )
     button.x = display.contentWidth * 0.365
     button.y = display.contentHeight * 0.68
-    button.strokeWidth = 10
+    button.strokeWidth = 20
     button.rotation = 90
     button:setStrokeColor( 1, 0.84, 0.1 )
     sceneGroup:insert( button )
@@ -109,7 +109,7 @@ function scene:create( event )
     button2 = display.newRect( 0, 0, 30, 0 )
     button2.x = display.contentWidth * 0.64
     button2.y = display.contentHeight * 0.68
-    button2.strokeWidth = 10
+    button2.strokeWidth = 20
     button2.rotation = 90
     button2:setStrokeColor( 1, 0.84, 0.1 )
     sceneGroup:insert( button2 )
